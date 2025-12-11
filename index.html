@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <title>Antonio Cicirelli – Senior System Administrator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sito personale di Antonio Cicirelli – Senior System Administrator con esperienza in ambienti defence, mission-critical ed enterprise, specializzato in infrastrutture Windows/Linux, automazione (Ansible, PowerShell) e sistemi C2.">
+  <style>
+    :root {
+      /* Palette base (dark) */
+      --bg: #020617;
+      --bg-alt: #022c22;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.16);
+      --accent-strong: #16a34a;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card-bg: rgba(15, 23, 42, 0.96);
+      --border: rgba(74, 222, 128, 0.28);
+      --shadow: 0 22px 50px rgba(0, 0, 0, 0.85);
+
+      --radius: 16px;
+      --max-width: 1000px;
+
+      --font-size-base: 17px;
+      --font-size-small: 14px;
+      --font-size-h1: 32px;
+      --font-size-h2: 20px;
+    }
+
+    /* Light theme overrides */
+    [data-theme="light"] {
+      --bg: #f1f5f9;
+      --bg-alt: #e2fbe8;
+      --accent: #16a34a;
+      --accent-soft: rgba(34, 197, 94, 0.14);
+      --accent-strong: #15803d;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --card-bg: #ffffff;
+      --border: rgba(15, 23, 42, 0.08);
+      --shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      font-size: var(--font-size-base);
+      background:
+        radial-gradient(circle at top, #064e3b 0, var(--bg) 55%),
+        radial-gradient(circle at bottom, #0b1120 0, var(--bg) 50%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    [data-theme="light"] body {
+      background:
+        radial-gradient(circle at top, #bbf7d0 0, var(--bg) 55%),
+        radial-gradient(circle at bottom, #e5e7eb 0, var(--bg) 50%);
+    }
+
+    a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    header {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 32px;
+      padding: 22px 20px 20px;
+      background: linear-gradient(
+        135deg,
+        rgba(34, 197, 94, 0.25),
+        rgba(5, 46, 32, 0.98)
+      );
+      border-radius: 20px;
+      border: 1px solid rgba(74, 222, 128, 0.5);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    [data-theme="light"] header {
+      background: linear-gradient(
+        135deg,
+        rgba(22, 163, 74, 0.12),
+        rgba(226, 252, 239, 0.98)
+      );
+      border-color: rgba(21, 128, 61, 0.35);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(74, 222, 128, 0.16) 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(22, 163, 74, 0.14) 0, transparent 55%);
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    header > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .tagline {
+      font-size: var(--font-size-small);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    h1 {
+      font-size: var(--font-size-h1);
+      margin: 8px 0 4px;
+    }
+
+    .subtitle {
+      font-size: 15.5px;
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 15px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition:
+        transform 0.08s ease,
+        box-shadow 0.08s ease,
+        background 0.12s ease,
+        border-color 0.12s ease,
+        color 0.12s ease;
+      white-space: nowrap;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #022c22;
+      box-shadow: 0 16px 38px rgba(34, 197, 94, 0.45);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 50px rgba(34, 197, 94, 0.65);
+      text-decoration: none;
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.6);
+      color: var(--text);
+      border-color: rgba(148, 163, 184, 0.55);
+    }
+    [data-theme="light"] .btn-ghost {
+      background: rgba(255, 255, 255, 0.9);
+      color: #111827;
+      border-color: rgba(148, 163, 184, 0.5);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.88);
+      text-decoration: none;
+    }
+    [data-theme="light"] .btn-ghost:hover {
+      background: #e5fbe9;
+    }
+
+    /* Language + theme controls */
+    .controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .lang-switch,
+    .theme-switch {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px;
+      border-radius: 999px;
+      background: rgba(5, 46, 32, 0.9);
+      border: 1px solid rgba(74, 222, 128, 0.4);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    [data-theme="light"] .lang-switch,
+    [data-theme="light"] .theme-switch {
+      background: rgba(241, 245, 249, 0.95);
+      border-color: rgba(148, 163, 184, 0.55);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.25);
+    }
+
+    .lang-btn,
+    .theme-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: background 0.12s ease, color 0.12s ease, transform 0.08s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .lang-btn.active,
+    .theme-btn.active {
+      background: var(--accent-strong);
+      color: #ecfdf3;
+      transform: translateY(-1px);
+    }
+
+    .theme-icon {
+      font-size: 13px;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    section {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 20px 18px 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    [data-theme="light"] section {
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.16);
+    }
+
+    section h2 {
+      margin: 0 0 12px;
+      font-size: var(--font-size-h2);
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+
+    section h2 span {
+      font-size: inherit;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--text);
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-size: 13px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 18px;
+    }
+
+    .item-title {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .item-meta {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 8px 0;
+      font-size: 15px;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    .exp {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .exp-item {
+      padding: 12px 11px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(
+        circle at top left,
+        rgba(22, 163, 74, 0.18),
+        rgba(2, 6, 23, 0.98)
+      );
+    }
+
+    [data-theme="light"] .exp-item {
+      background: radial-gradient(
+        circle at top left,
+        rgba(74, 222, 128, 0.18),
+        #ffffff
+      );
+      border-color: rgba(148, 163, 184, 0.3);
+    }
+
+    .project-item {
+      padding: 12px 11px 10px;
+      border-radius: 12px;
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      background: rgba(2, 6, 23, 0.98);
+      margin-bottom: 10px;
+    }
+
+    [data-theme="light"] .project-item {
+      background: #ffffff;
+    }
+
+    .project-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding-left: 0;
+      font-size: 15px;
+    }
+
+    .contact-list li {
+      margin-bottom: 6px;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Lingue: default IT visibile anche se JS non parte */
+    .lang {
+      display: none;
+    }
+    .lang-it {
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page {
+        padding-inline: 14px;
+      }
+
+      header {
+        padding: 18px 14px 16px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .subtitle {
+        font-size: 14.5px;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .top-row {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+
+      .controls {
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="top-row">
+        <div>
+          <div class="tagline">
+            <span class="lang lang-it">
+              Senior System Administrator · Automazione · Infrastrutture
+            </span>
+            <span class="lang lang-en">
+              Senior System Administrator · Defence &amp; Mission-Critical Infrastructure · Automation &amp; C2 Systems
+            </span>
+          </div>
+          <h1>Antonio Cicirelli</h1>
+        </div>
+
+        <div class="controls" aria-label="language and theme controls">
+          <!-- Theme switch -->
+          <div class="theme-switch">
+            <button class="theme-btn active" data-theme="dark">
+              <span class="theme-icon">🌙</span>
+              DARK
+            </button>
+            <button class="theme-btn" data-theme="light">
+              <span class="theme-icon">☀️</span>
+              LIGHT
+            </button>
+          </div>
+
+          <!-- Language switch -->
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="it">IT</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="subtitle lang lang-it">
+        Senior System Administrator con oltre 10 anni di esperienza in ambienti
+        enterprise e defence, specializzato in infrastrutture <strong>Windows</strong> e
+        <strong>Linux</strong>, virtualizzazione (<strong>VMware</strong>,
+        <strong>Proxmox</strong>, <strong>SUSE Linux Enterprise</strong>),
+        automazione con <strong>Ansible</strong> e <strong>PowerShell</strong> e
+        gestione di servizi core di rete (<strong>Active Directory</strong>,
+        <strong>DNS</strong>, <strong>DHCP</strong>).
+      </p>
+
+      <p class="subtitle lang lang-en">
+        Senior System Administrator with solid experience in defence, mission-critical and enterprise environments.
+        I specialise in Windows/Linux infrastructure engineering, automation (Ansible, PowerShell) and backend systems for
+        Command &amp; Control (C2), EW/SIGINT platforms and high-security deployments.
+        I design standardised, resilient and fully automated infrastructures that support real-time processing,
+        tactical operations and strict reliability requirements, producing NATO-aligned technical documentation in
+        multidisciplinary engineering teams.
+      </p>
+
+      <div class="header-actions">
+        <!-- Sostituisci # con il link reale al tuo CV -->
+        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">
+          <span class="lang lang-it">Scarica CV</span>
+          <span class="lang lang-en">Download Resume</span>
+        </a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/antonio-cicirelli-bba359193/" target="_blank" rel="noopener">
+          <span class="lang lang-it">Profilo LinkedIn</span>
+          <span class="lang lang-en">LinkedIn Profile</span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Tech stack in sintesi / Tech stack at a glance -->
+      <section id="techstack">
+        <h2>
+          <span class="lang lang-it">Tech stack in sintesi</span>
+          <span class="lang lang-en">Tech stack at a glance</span>
+        </h2>
+        <div class="grid-2">
+          <div>
+            <div class="item-title lang lang-it">Core Infrastructure</div>
+            <div class="item-title lang lang-en">Core Infrastructure</div>
+            <p class="item-meta">
+              Windows Server 2008–2022 · Active Directory · DNS/DHCP · GPO · File/Print Server · DFS · RDS · WSUS · ADCS/PKI
+            </p>
+          </div>
+          <div>
+            <div class="item-title lang lang-it">Linux &amp; Virtualizzazione</div>
+            <div class="item-title lang lang-en">Linux &amp; Virtualisation</div>
+            <p class="item-meta">
+              Red Hat · SUSE Linux Enterprise · Debian · Proxmox VE · VMware vSphere/NSX/vSAN/Horizon/vRO/vRA
+            </p>
+          </div>
+          <div>
+            <div class="item-title">Automation &amp; Monitoring</div>
+            <p class="item-meta">
+              Ansible (IaC, provisioning, config management) · PowerShell (AD, Windows automation) · Bash · Zabbix
+            </p>
+          </div>
+          <div>
+            <div class="item-title lang lang-it">Defence, C2 &amp; Realtime Comms</div>
+            <div class="item-title lang lang-en">Defence, C2 &amp; Realtime Comms</div>
+            <p class="item-meta">
+              C2 backend (Eurofighter · TEWS) · EW/SIGINT infrastructure · piattaforme di comunicazione realtime basate su XMPP/Openfire · client Dino (Linux/Windows) · automazione Ansible · documentazione allineata a standard NATO · ambienti ad alta sicurezza
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chi sono / About -->
+      <section id="about">
+        <h2>
+          <span class="lang lang-it">Chi sono</span>
+          <span class="lang lang-en">About</span>
+        </h2>
+
+        <p class="lang lang-it">
+          Mi chiamo <strong>Antonio Cicirelli</strong> e lavoro come
+          <strong>Senior System Administrator</strong> in ambito enterprise e defence.
+          Ho maturato esperienza nella progettazione, implementazione e
+          manutenzione di infrastrutture ibride basate su
+          <strong>Windows Server</strong> e <strong>Linux</strong>, con un forte
+          focus su virtualizzazione, automazione e sicurezza.
+          Utilizzo <strong>Ansible</strong> e <strong>PowerShell</strong> per applicare un approccio
+          <strong>Infrastructure as Code</strong>, standardizzare le configurazioni e ridurre i tempi
+          di provisioning e di intervento.
+        </p>
+
+        <p class="lang lang-en">
+          I am a <strong>Senior System Administrator</strong> working in enterprise and defence contexts.
+          My background covers the design, deployment and maintenance of hybrid Windows/Linux infrastructures,
+          with a strong focus on virtualisation, automation and security.
+          I use <strong>Ansible</strong> and <strong>PowerShell</strong> to implement Infrastructure as Code,
+          standardise configurations and reduce provisioning and intervention times, supporting complex and
+          mission-critical systems.
+        </p>
+      </section>
+
+      <!-- Competenze / Skills -->
+      <section id="skills">
+        <h2>
+          <span class="lang lang-it">Competenze</span>
+          <span class="lang lang-en">Skills</span>
+        </h2>
+
+        <div class="grid-2">
+          <!-- WINDOWS & IDENTITY -->
+          <div>
+            <div class="item-title lang lang-it">Piattaforma Windows &amp; Identity</div>
+            <div class="item-title lang lang-en">Windows Platform &amp; Identity</div>
+
+            <div class="item-meta lang lang-it">Domini, servizi core, gestione utenti</div>
+            <div class="item-meta lang lang-en">Domains, core services, identity management</div>
+
+            <div style="margin-top: 6px;">
+              <span class="pill">Windows Server (2008–2022)</span>
+              <span class="pill">Active Directory Domain Services</span>
+              <span class="pill">DNS / DHCP</span>
+              <span class="pill">GPO (security baselines)</span>
+              <span class="pill">AD Sites &amp; Services</span>
+              <span class="pill">File server &amp; NTFS permissions</span>
+              <span class="pill">DFS Namespaces / Replication</span>
+              <span class="pill">Print server</span>
+              <span class="pill">RDS / RemoteApp</span>
+              <span class="pill">WSUS / patch management</span>
+              <span class="pill">ADCS / PKI</span>
+              <span class="pill">Account &amp; group management</span>
+            </div>
+          </div>
+
+          <!-- LINUX / VIRTUALIZZAZIONE / CLOUD -->
+          <div>
+            <div class="item-title lang lang-it">Linux, Virtualizzazione &amp; Cloud</div>
+            <div class="item-title lang lang-en">Linux, Virtualisation &amp; Cloud</div>
+
+            <div class="item-meta lang lang-it">SUSE, Red Hat, hypervisor e servizi</div>
+            <div class="item-meta lang lang-en">SUSE, Red Hat, hypervisors and services</div>
+
+            <div style="margin-top: 6px;">
+              <span class="pill">Linux (Red Hat, SLES, Debian)</span>
+              <span class="pill">SUSE Linux Enterprise</span>
+              <span class="pill">Proxmox VE</span>
+              <span class="pill">VMware vSphere / ESXi / vCenter</span>
+              <span class="pill">VMware NSX / vSAN</span>
+              <span class="pill">VMware Horizon / vRO / vRA</span>
+              <span class="pill">Nginx (reverse proxy, WebSocket)</span>
+              <span class="pill">Exchange Server</span>
+              <span class="pill">Office 365 / Microsoft 365</span>
+              <span class="pill">Azure Fundamentals</span>
+            </div>
+          </div>
+
+          <!-- AUTOMAZIONE / MONITORAGGIO -->
+          <div>
+            <div class="item-title lang lang-it">Automazione &amp; Monitoraggio</div>
+            <div class="item-title lang lang-en">Automation &amp; Monitoring</div>
+
+            <div class="item-meta lang lang-it">IaC, scripting e osservabilità</div>
+            <div class="item-meta lang lang-en">IaC, scripting &amp; observability</div>
+
+            <div style="margin-top: 6px;">
+              <span class="pill">Ansible (IaC)</span>
+              <span class="pill">Playbook &amp; ruoli</span>
+              <span class="pill">Automazione provisioning VM</span>
+              <span class="pill">Automazione configurazioni rete</span>
+              <span class="pill">PowerShell</span>
+              <span class="pill">PowerShell per AD</span>
+              <span class="pill">Bash / shell scripting</span>
+              <span class="pill">Zabbix</span>
+              <span class="pill">Log analysis &amp; troubleshooting</span>
+            </div>
+          </div>
+
+          <!-- NETWORKING / SECURITY -->
+          <div>
+            <div class="item-title lang lang-it">Networking &amp; Sicurezza</div>
+            <div class="item-title lang lang-en">Networking &amp; Security</div>
+
+            <div class="item-meta lang lang-it">Routing, switching, hardening</div>
+            <div class="item-meta lang lang-en">Routing, switching, hardening</div>
+
+            <div style="margin-top: 6px;">
+              <span class="pill">CCNA Routing &amp; Switching</span>
+              <span class="pill">VLAN / 802.1Q</span>
+              <span class="pill">Layer 2 / Layer 3</span>
+              <span class="pill">Firewall &amp; ACL</span>
+              <span class="pill">VPN site-to-site / remote</span>
+              <span class="pill">Security best practices</span>
+              <span class="pill">Hardening sistemi</span>
+              <span class="pill">Backup &amp; DR basics</span>
+            </div>
+          </div>
+
+          <!-- DEFENCE & MISSION-CRITICAL SYSTEMS -->
+          <div>
+            <div class="item-title lang lang-it">Difesa &amp; Sistemi Mission-Critical</div>
+            <div class="item-title lang lang-en">Defence &amp; Mission-Critical Systems</div>
+
+            <div class="item-meta lang lang-it">C2, EW/SIGINT, automazione e standard NATO</div>
+            <div class="item-meta lang lang-en">C2, EW/SIGINT, automation and NATO-aligned engineering</div>
+
+            <div style="margin-top: 6px;">
+              <span class="pill">Command &amp; Control (C2)</span>
+              <span class="pill">EW / SIGINT Infrastructure</span>
+              <span class="pill">Distributed Tactical Systems</span>
+              <span class="pill">Windows/Linux Hardening</span>
+              <span class="pill">Ansible Automation</span>
+              <span class="pill">PowerShell Automation</span>
+              <span class="pill">NATO STANAG documentation</span>
+              <span class="pill">Mission-critical reliability</span>
+              <span class="pill">High-security environments</span>
+              <span class="pill">Lifecycle management</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Esperienze / Experience -->
+      <section id="experience">
+        <h2>
+          <span class="lang lang-it">Esperienza</span>
+          <span class="lang lang-en">Experience</span>
+        </h2>
+
+        <div class="exp">
+          <!-- ALTEN -->
+          <div class="exp-item">
+            <div class="item-title">
+              <span class="lang lang-it">Senior System Administrator – ALTEN S.p.A.</span>
+              <span class="lang lang-en">Senior System Administrator – ALTEN S.p.A.</span>
+            </div>
+
+            <div class="item-meta lang lang-it">
+              04/09/2023 – Attuale · Roma, Italia  
+              (consulenza su due clienti distinti: <strong>Leonardo S.p.A.</strong> e <strong>ELT S.p.A.</strong>)
+            </div>
+            <div class="item-meta lang lang-en">
+              04/09/2023 – Present · Rome, Italy  
+              (consulting for two separate clients: <strong>Leonardo S.p.A.</strong> and <strong>ELT S.p.A.</strong>)
+            </div>
+
+            <!-- CLIENTE LEONARDO -->
+            <div class="item-title" style="margin-top:10px;">
+              <span class="lang lang-it">Cliente: Leonardo S.p.A. – Sistemi Eurofighter (CSCI, briefing/debriefing)</span>
+              <span class="lang lang-en">Client: Leonardo S.p.A. – Eurofighter systems (CSCI, briefing/debriefing)</span>
+            </div>
+
+            <ul class="lang lang-it">
+              <li>Installazione, configurazione e aggiornamento dei <strong>CSCI</strong> per la catena logistica e operativa dell’Eurofighter, garantendo coerenza tra ambienti laboratorio, pre-produzione e produzione.</li>
+              <li>Automazione massiva tramite <strong>PowerShell</strong> e <strong>Ansible</strong> per l’installazione di moduli software, servicing, hardening sistemi Windows e validazione configurazioni.</li>
+              <li>Gestione dei sistemi di <strong>briefing e debriefing</strong>, incluse configurazioni Windows/Linux, dipendenze applicative, logging e stabilità dei servizi mission-critical.</li>
+              <li>Documentazione tecnica completa (runbook, SOP, checklist) redatta in conformità a <strong>standard NATO</strong> e processi interni del cliente.</li>
+              <li>Supporto all’infrastruttura Windows (GPO, AD, ruoli server, networking) per garantire la continuità operativa dei sistemi.</li>
+            </ul>
+
+            <ul class="lang lang-en">
+              <li>Installed, configured and upgraded <strong>CSCI</strong> components for Eurofighter support chains, ensuring consistency across laboratory, pre-production and production environments.</li>
+              <li>Developed extensive automation using <strong>PowerShell</strong> and <strong>Ansible</strong> to deploy software modules, perform servicing, apply Windows hardening and validate configurations.</li>
+              <li>Managed <strong>briefing and debriefing systems</strong>, including Windows/Linux configuration, application dependencies, logging and mission-critical service stability.</li>
+              <li>Produced full technical documentation (runbooks, SOPs, checklists) compliant with <strong>NATO standards</strong> and customer engineering processes.</li>
+              <li>Supported the Windows infrastructure (GPO, AD, server roles, networking) ensuring operational continuity for mission systems.</li>
+            </ul>
+
+            <!-- CLIENTE ELT -->
+            <div class="item-title" style="margin-top:20px;">
+              <span class="lang lang-it">Cliente: ELT S.p.A. – Progetto TEWS (Tactical EW System)</span>
+              <span class="lang lang-en">Client: ELT S.p.A. – TEWS Project (Tactical EW System)</span>
+            </div>
+            <ul class="lang lang-it">
+             <li>Supporto infrastrutturale avanzato al sistema <strong>TEWS</strong>, piattaforma di comando e controllo per asset EW/SIGINT tattici distribuiti (EWC2, ESM/ELINT, ECM).</li>
+             <li>Progettazione e gestione dell’infrastruttura server Windows/Linux che costituisce il backend del sistema C2, con particolare attenzione a sincronizzazione, affidabilità e continuità operativa.</li>
+             <li>Automazione end-to-end della configurazione dei nodi tramite <strong>PowerShell</strong> e <strong>Ansible</strong> (installazione moduli, hardening, networking, rollout versioni).</li>
+             <li>Integrazione ed evoluzione dei moduli C2 derivati dal precedente sistema <strong>LOKI</strong>, orientati a operazioni <strong>network-centric</strong> nel dominio EMSO.</li>
+             <li>Progettazione e realizzazione di un servizio di <strong>chat e VoIP</strong> integrato nel sistema LOKI, basato su <strong>Openfire</strong> e client <strong>Dino</strong> per ambienti Linux e Windows, completamente automatizzato tramite <strong>Ansible</strong> (installazione, configurazione, certificati, integrazione con dominio).</li>
+             <li>Redazione documentazione tecnica conforme a <strong>NATO STANAG</strong>, incluse procedure operative, configurazioni standard, linee guida per installazione e collaudo.</li>
+             <li>Attività di supporto infrastrutturale per capability quali: acquisizione SIGINT, sorveglianza EM, geolocalizzazione emettitori, registrazione dati e coordinamento operativo tra piattaforme distribuite.</li>
+             <li>Hardening sicurezza: segmentazione rete, criteri accesso, logging centralizzato, auditing, best practice su Windows/Linux.</li>
+            </ul>
+
+            <ul class="lang lang-en">
+             <li>Provided advanced infrastructure support for <strong>TEWS</strong>, a command-and-control platform for distributed tactical EW/SIGINT assets (EWC2, ESM/ELINT, ECM).</li>
+             <li>Designed and maintained the Windows/Linux server infrastructure powering the C2 backend, ensuring synchronization, reliability and continuous operation across all deployed nodes.</li>
+             <li>Implemented full-stack automation using <strong>PowerShell</strong> and <strong>Ansible</strong> (module deployment, hardening, networking configuration, version rollout).</li>
+             <li>Integrated and evolved C2 modules inherited from the previous <strong>LOKI</strong> EMSO C2 system, enabling <strong>network-centric tactical operations</strong>.</li>
+             <li>Designed and implemented an integrated <strong>chat and VoIP</strong> service within the LOKI system, based on <strong>Openfire</strong> and <strong>Dino</strong> clients for both Linux and Windows, fully automated with <strong>Ansible</strong> (installation, configuration, certificates, domain integration).</li>
+             <li>Produced technical documentation compliant with <strong>NATO STANAG</strong>, including operational procedures, configuration standards, installation and validation guides.</li>
+             <li>Supported infrastructure aspects of TEWS capabilities: SIGINT acquisition, EM spectrum surveillance, emitter geolocation, long-term data recording, and coordination between distributed platforms.</li>
+             <li>Enhanced system security through hardening, network segmentation, access control, centralized logging and auditing on Windows/Linux systems.</li>
+            </ul>
+          </div>
+
+          <!-- KYNDRYL -->
+          <div class="exp-item">
+            <div class="item-title">
+              <span class="lang lang-it">Junior System Administrator / IT Architect Zabbix – Kyndryl Italia Innovation Services S.r.l.</span>
+              <span class="lang lang-en">Junior System Administrator / IT Architect Zabbix – Kyndryl Italia Innovation Services S.r.l.</span>
+            </div>
+            <div class="item-meta lang lang-it">
+              07/06/2022 – 03/09/2023 · Roma, Italia
+            </div>
+            <div class="item-meta lang lang-en">
+              07/06/2022 – 03/09/2023 · Rome, Italy
+            </div>
+
+            <ul class="lang lang-it">
+              <li>Monitoraggio di server fisici e VMware Windows/Linux tramite <strong>Zabbix</strong> e strumenti proprietari, con tuning di template, trigger e notifiche per ambienti ministeriali.</li>
+              <li>Implementazione e gestione di ambienti <strong>VMware vSphere</strong>, <strong>NSX</strong>, <strong>vSAN</strong>, <strong>Horizon</strong> e <strong>vRealize</strong> per clienti enterprise.</li>
+              <li>Supporto sistemistico su <strong>Windows Server</strong> (Active Directory, DNS, DHCP, file server) e integrazione con la piattaforma di monitoraggio.</li>
+              <li>Progettazione dell’architettura Zabbix a livello nazionale e creazione di automazioni con <strong>Ansible</strong> per la gestione dei server monitorati (installazione agent, configurazioni standard, registrazione automatica).</li>
+            </ul>
+
+            <ul class="lang lang-en">
+              <li>Monitored physical and VMware Windows/Linux servers using <strong>Zabbix</strong> and proprietary tools, tuning templates, triggers and notifications for ministerial environments.</li>
+              <li>Implemented and managed <strong>VMware vSphere</strong>, <strong>NSX</strong>, <strong>vSAN</strong>, <strong>Horizon</strong> and <strong>vRealize</strong> infrastructures for enterprise customers.</li>
+              <li>Provided system administration on <strong>Windows Server</strong> (Active Directory, DNS, DHCP, file servers) and integrated them with the monitoring stack.</li>
+              <li>Designed nationwide Zabbix architecture and built <strong>Ansible</strong>-based automation for monitored servers (agent deployment, standard configurations, auto-registration).</li>
+            </ul>
+          </div>
+
+          <!-- BV TECH -->
+          <div class="exp-item">
+            <div class="item-title">
+              <span class="lang lang-it">Service Desk Specialist / System Administrator – BV TECH S.p.A.</span>
+              <span class="lang lang-en">Service Desk Specialist / System Administrator – BV TECH S.p.A.</span>
+            </div>
+            <div class="item-meta lang lang-it">
+              01/04/2015 – 06/06/2022 · Roma/Bari, Italia
+            </div>
+            <div class="item-meta lang lang-en">
+              01/04/2015 – 06/06/2022 · Rome/Bari, Italy
+            </div>
+
+            <ul class="lang lang-it">
+              <li>Amministrazione di infrastrutture di posta aziendale <strong>Microsoft Exchange</strong> on-premise e <strong>Exchange Online</strong>: creazione caselle, database, connettori, regole di trasporto e politiche anti-spam.</li>
+              <li>Migrazioni verso <strong>Microsoft 365</strong> per una rete di punti vendita, con gestione di identità ibride (<strong>Active Directory</strong> + Azure AD) e riduzione dei tempi di fermo.</li>
+              <li>Gestione quotidiana di <strong>Active Directory</strong>: utenti, gruppi, OU, policy di sicurezza, join al dominio, supporto a tecnici di sede e sul territorio.</li>
+              <li>Gestione della rete dei punti vendita (VPN, firewall, routing) e coordinamento con partner esterni per troubleshooting e cambi infrastrutturali.</li>
+            </ul>
+
+            <ul class="lang lang-en">
+              <li>Administered corporate <strong>Microsoft Exchange</strong> infrastructures (on-premises and <strong>Exchange Online</strong>): mailboxes, databases, connectors, transport rules and anti-spam policies.</li>
+              <li>Led <strong>Microsoft 365</strong> migration for a retail network, managing hybrid identities (<strong>Active Directory</strong> + Azure AD) and minimising downtime.</li>
+              <li>Handled day-to-day <strong>Active Directory</strong> administration: users, groups, OUs, security policies, domain joins and support for local and field technicians.</li>
+              <li>Managed branch office networks (VPNs, firewalls, routing) and coordinated with external partners for troubleshooting and infrastructure changes.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Progetti / Projects -->
+      <section id="projects">
+        <h2>
+          <span class="lang lang-it">Progetti &amp; Case Studies</span>
+          <span class="lang lang-en">Projects &amp; Case Studies</span>
+        </h2>
+
+        <!-- LEONARDO / EUROFIGHTER -->
+        <div class="project-item">
+          <div class="project-label lang lang-it">Difesa · Leonardo S.p.A.</div>
+          <div class="project-label lang lang-en">Defence · Leonardo S.p.A.</div>
+
+          <div class="item-title lang lang-it">
+            Automazione infrastruttura Windows per CSCI Eurofighter e sistemi di briefing/debriefing
+          </div>
+          <div class="item-title lang lang-en">
+            Windows infrastructure automation for Eurofighter CSCI and briefing/debriefing systems
+          </div>
+
+          <ul class="lang lang-it">
+            <li>Standardizzazione di ambienti laboratorio, pre-produzione e produzione tramite <strong>PowerShell</strong> e <strong>Ansible</strong> per installazione e aggiornamento CSCI.</li>
+            <li>Automazione di ruoli e feature Windows Server, configurazione rete, join al dominio e hardening secondo policy di sicurezza del cliente.</li>
+            <li>Definizione di procedure di rilascio, roll-back e documentazione tecnica nel rispetto di <strong>standard NATO</strong>.</li>
+          </ul>
+
+          <ul class="lang lang-en">
+            <li>Standardised laboratory, pre-production and production environments using <strong>PowerShell</strong> and <strong>Ansible</strong> for CSCI installation and updates.</li>
+            <li>Automated Windows Server roles and features, network configuration, domain join and hardening aligned with customer security policies.</li>
+            <li>Defined release, roll-back and documentation procedures in line with <strong>NATO</strong> standards.</li>
+          </ul>
+        </div>
+
+        <!-- ELT / TEWS -->
+        <div class="project-item">
+          <div class="project-label lang lang-it">Difesa · ELT S.p.A.</div>
+          <div class="project-label lang lang-en">Defence · ELT S.p.A.</div>
+
+          <div class="item-title lang lang-it">
+            TEWS – Infrastruttura di comando e controllo per sistemi EW/SIGINT (GBAD)
+          </div>
+          <div class="item-title lang lang-en">
+            TEWS – Command &amp; Control infrastructure for EW/SIGINT tactical systems (GBAD)
+          </div>
+
+          <ul class="lang lang-it">
+            <li>Supporto all’evoluzione del sistema TEWS, piattaforma di Electronic Warfare/SIGINT composta da asset tattici mobili interconnessi.</li>
+            <li>Progettazione e gestione dell’infrastruttura Windows/Linux del backend C2, garantendo sincronizzazione, continuità operativa e resilienza.</li>
+            <li>Automazione completa di installazioni, update e configurazioni tramite <strong>PowerShell</strong> e <strong>Ansible</strong>.</li>
+            <li>Integrazione ed evoluzione dei moduli C2 derivati da <strong>LOKI</strong>, migliorando l’architettura per operazioni <strong>network-centric</strong>.</li>
+            <li>Redazione di documentazione conforme a <strong>NATO STANAG</strong>, incluse procedure operative, guide di installazione e checklist.</li>
+          </ul>
+
+          <ul class="lang lang-en">
+            <li>Supported the evolution of TEWS, an integrated EW/SIGINT system-of-systems composed of multiple tactical assets.</li>
+            <li>Designed and maintained the Windows/Linux infrastructure powering the C2 backend, ensuring synchronization, continuity and resilience.</li>
+            <li>Implemented full-stack automation using <strong>PowerShell</strong> and <strong>Ansible</strong> for deployments, updates and configuration standardisation.</li>
+            <li>Integrated and enhanced C2 modules inherited from <strong>LOKI</strong>, enabling <strong>network-centric tactical operations</strong>.</li>
+            <li>Produced technical documentation compliant with <strong>NATO STANAG</strong>, including operational procedures, installation guides and checklists.</li>
+          </ul>
+        </div>
+
+         <!-- ELT / LOKI CHAT & VOIP -->
+         <div class="project-item">
+         <div class="project-label lang lang-it">Difesa · ELT S.p.A.</div>
+         <div class="project-label lang lang-en">Defence · ELT S.p.A.</div>
+
+         <div class="item-title lang lang-it">
+           Sottosistema chat e VoIP integrato nel C2 LOKI
+         </div>
+         <div class="item-title lang lang-en">
+           Integrated chat and VoIP subsystem within the LOKI C2 platform
+         </div>
+
+        <ul class="lang lang-it">
+    <li>Progettazione e implementazione di un servizio di <strong>messaggistica istantanea e VoIP</strong> per operatori e postazioni tattiche, integrato nel sistema di comando e controllo <strong>LOKI</strong>.</li>
+    <li>Realizzazione dell’infrastruttura basata su <strong>Openfire</strong> (server XMPP) e client <strong>Dino</strong> per ambienti <strong>Linux</strong> e <strong>Windows</strong>, con gestione di presenza, chat one-to-one e canali multipli.</li>
+    <li>Automazione completa con <strong>Ansible</strong>: installazione dei nodi server, distribuzione e configurazione dei client, gestione certificati, parametri di sicurezza e integrazione con il dominio.</li>
+    <li>Allineamento a requisiti di alta disponibilità e sicurezza, in coerenza con le linee guida del cliente e con le policy di infrastruttura esistenti.</li>
+  </ul>
+
+  <ul class="lang lang-en">
+    <li>Designed and implemented an <strong>instant messaging and VoIP</strong> service for operators and tactical workstations, integrated into the <strong>LOKI</strong> Command &amp; Control platform.</li>
+    <li>Built the solution on <strong>Openfire</strong> (XMPP server) and <strong>Dino</strong> clients for both <strong>Linux</strong> and <strong>Windows</strong>, providing presence management, one-to-one chats and multi-channel communication.</li>
+    <li>Delivered full automation with <strong>Ansible</strong>: server deployment, client rollout and configuration, certificate management, security settings and domain integration.</li>
+    <li>Ensured high availability and security compliance, aligned with customer guidelines and existing infrastructure policies.</li>
+  </ul>
+</div>
+
+        <!-- KYNDRYL / ZABBIX -->
+        <div class="project-item">
+          <div class="project-label lang lang-it">Pubblica Amministrazione · Kyndryl</div>
+          <div class="project-label lang lang-en">Public Sector · Kyndryl</div>
+
+          <div class="item-title lang lang-it">
+            Architettura nazionale Zabbix e automazione server Windows/Linux
+          </div>
+          <div class="item-title lang lang-en">
+            Nationwide Zabbix architecture and Windows/Linux server automation
+          </div>
+
+          <ul class="lang lang-it">
+            <li>Progettazione dell’architettura <strong>Zabbix</strong> per il monitoraggio centralizzato di centinaia di server distribuiti.</li>
+            <li>Automazione, tramite <strong>Ansible</strong>, dell’installazione agent, configurazione host, template e registrazione automatica dei server ministeriali.</li>
+            <li>Integrazione con infrastruttura <strong>Active Directory</strong> e ambienti <strong>VMware vSphere</strong>.</li>
+          </ul>
+
+          <ul class="lang lang-en">
+            <li>Designed the <strong>Zabbix</strong> architecture for centralised monitoring of hundreds of distributed Windows/Linux servers.</li>
+            <li>Used <strong>Ansible</strong> to automate Zabbix agent deployment, host configuration, template assignment and auto-registration.</li>
+            <li>Integrated monitoring with <strong>Active Directory</strong> and <strong>VMware vSphere</strong> environments.</li>
+          </ul>
+        </div>
+
+        <!-- BV TECH / EXCHANGE -->
+        <div class="project-item">
+          <div class="project-label lang lang-it">Retail · BV TECH</div>
+          <div class="project-label lang lang-en">Retail · BV TECH</div>
+
+          <div class="item-title lang lang-it">
+            Migrazione Exchange on-premise verso Microsoft 365 per rete di punti vendita
+          </div>
+          <div class="item-title lang lang-en">
+            Exchange on-prem to Microsoft 365 migration for retail network
+          </div>
+
+          <ul class="lang lang-it">
+            <li>Pianificazione e gestione della migrazione da <strong>Exchange Server</strong> on-premise a <strong>Exchange Online</strong> per utenti distribuiti in decine di punti vendita.</li>
+            <li>Configurazione di ambiente ibrido, sincronizzazione identità (<strong>AD</strong>/<strong>Azure AD</strong>) e cut-over con impatto minimo sul business.</li>
+            <li>Documentazione di procedure operative per il team di supporto e formazione di base all’utenza finale.</li>
+          </ul>
+
+          <ul class="lang lang-en">
+            <li>Planned and managed migration from on-premises <strong>Exchange Server</strong> to <strong>Exchange Online</strong> for users distributed across dozens of branches.</li>
+            <li>Configured hybrid environment, identity synchronisation (<strong>AD</strong>/<strong>Azure AD</strong>) and cut-over with minimal business impact.</li>
+            <li>Documented operating procedures for the support team and delivered basic training to end users.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Formazione & Certificazioni / Education & Certifications -->
+      <section id="education">
+        <h2>
+          <span class="lang lang-it">Formazione &amp; Certificazioni</span>
+          <span class="lang lang-en">Education &amp; Certifications</span>
+        </h2>
+
+        <ul class="lang lang-it">
+          <li>
+            <strong>Perito Tecnico Aeronautico</strong> – I.I.S. Euclide, Bari · 01/09/2001 – 04/07/2006
+          </li>
+          <li>
+            <strong>CCNA Routing and Switching</strong> – 23/11/2019
+          </li>
+          <li>
+            <strong>Microsoft Azure Fundamentals</strong> – 06/07/2022
+          </li>
+        </ul>
+
+        <ul class="lang lang-en">
+          <li>
+            <strong>Aeronautical Technical Expert Diploma</strong> – I.I.S. Euclide, Bari · 01/09/2001 – 04/07/2006
+          </li>
+          <li>
+            <strong>CCNA Routing and Switching</strong> – 23/11/2019
+          </li>
+          <li>
+            <strong>Microsoft Azure Fundamentals</strong> – 06/07/2022
+          </li>
+        </ul>
+      </section>
+
+      <!-- Lingue / Languages -->
+      <section id="languages">
+        <h2>
+          <span class="lang lang-it">Lingue</span>
+          <span class="lang lang-en">Languages</span>
+        </h2>
+
+        <ul class="lang lang-it">
+          <li><strong>Italiano</strong> – Madrelingua</li>
+          <li><strong>Inglese</strong> – Livello B2 (comprensione, produzione e interazione)</li>
+        </ul>
+
+        <ul class="lang lang-en">
+          <li><strong>Italian</strong> – Native</li>
+          <li><strong>English</strong> – B2 level (listening, reading, speaking and writing)</li>
+        </ul>
+      </section>
+
+      <!-- Contatti / Contacts -->
+      <section id="contact">
+        <h2>
+          <span class="lang lang-it">Contatti</span>
+          <span class="lang lang-en">Contacts</span>
+        </h2>
+        <ul class="contact-list">
+          <li>
+            <span class="lang lang-it">Telefono: </span>
+            <span class="lang lang-en">Phone: </span>
+            <a href="tel:+393500214904">+39 350 021 4904</a>
+          </li>
+          <li>
+            Email:
+            <a href="mailto:cicirelli.antonio@gmail.com">cicirelli.antonio@gmail.com</a>
+          </li>
+          <li>
+            LinkedIn:
+            <a href="https://www.linkedin.com/in/antonio-cicirelli-bba359193/" target="_blank" rel="noopener">
+              /in/antonio-cicirelli-bba359193
+            </a>
+          </li>
+          <li>
+            <span class="lang lang-it">Sede: Roma, Italia</span>
+            <span class="lang lang-en">Location: Rome, Italy</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Antonio Cicirelli ·
+      <span class="lang lang-it">Sito personale a supporto di CV e profilo LinkedIn.</span>
+      <span class="lang lang-en">Personal website to complement CV and LinkedIn profile.</span>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Anno corrente
+      const yearEl = document.getElementById("year");
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      // Lingue
+      const langButtons = document.querySelectorAll(".lang-btn");
+      const langElems = document.querySelectorAll(".lang");
+
+      function setLanguage(lang) {
+        langElems.forEach(function (el) {
+          if (el.classList.contains("lang-" + lang)) {
+            const tag = el.tagName.toLowerCase();
+            if (tag === "span" || tag === "strong" || tag === "b" || tag === "i" || tag === "em") {
+              el.style.display = "inline";
+            } else {
+              el.style.display = "block";
+            }
+          } else {
+            el.style.display = "none";
+          }
+        });
+
+        langButtons.forEach(function (btn) {
+          btn.classList.toggle("active", btn.dataset.lang === lang);
+        });
+
+        document.documentElement.setAttribute("lang", lang);
+
+        try {
+          localStorage.setItem("site-lang", lang);
+        } catch (e) {}
+      }
+
+      (function initLang() {
+        let stored = "it";
+        try {
+          const saved = localStorage.getItem("site-lang");
+          if (saved === "it" || saved === "en") stored = saved;
+        } catch (e) {
+          stored = "it";
+        }
+        setLanguage(stored);
+      })();
+
+      langButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          setLanguage(btn.dataset.lang);
+        });
+      });
+
+      // Tema dark/light
+      const themeButtons = document.querySelectorAll(".theme-btn");
+
+      function setTheme(theme) {
+        const root = document.documentElement;
+        if (theme !== "light" && theme !== "dark") {
+          theme = "dark";
+        }
+        root.setAttribute("data-theme", theme);
+
+        themeButtons.forEach(function (btn) {
+          btn.classList.toggle("active", btn.dataset.theme === theme);
+        });
+
+        try {
+          localStorage.setItem("site-theme", theme);
+        } catch (e) {}
+      }
+
+      (function initTheme() {
+        let stored = "dark";
+        try {
+          const saved = localStorage.getItem("site-theme");
+          if (saved === "dark" || saved === "light") stored = saved;
+        } catch (e) {
+          stored = "dark";
+        }
+        setTheme(stored);
+      })();
+
+      themeButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          setTheme(btn.dataset.theme);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
